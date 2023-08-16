@@ -30,3 +30,12 @@ function operate(operator, num1, num2) {
       return divide(num1, num2);
   }
 }
+
+function updateDisplay(userInput) {
+  const display = document.querySelector('.display');
+  if (display.textContent === '0') {
+    display.textContent = userInput;
+  } else {
+    display.textContent += userInput;
+  }
+}
