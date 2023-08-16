@@ -26,20 +26,17 @@ function operate(operator, num1, num2) {
   } else {
     switch (operator) {
       case '+':
-        assignNum();
-      // solution = add(num1, num2);
+        solution = add(num1, num2);
+        console.log(solution);
       // updateDisplay(solution);
       case '-':
-        assignNum();
-      // solution = subtract(num1, num2);
+        solution = subtract(num1, num2);
       // updateDisplay(solution);
       case '*':
-        assignNum();
-      // solution = multiply(num1, num2);
+        solution = multiply(num1, num2);
       // updateDisplay(solution);
       case '/':
-        assignNum();
-      // solution = divide(num1, num2);
+        solution = divide(num1, num2);
       // updateDisplay(solution);
     }
   }
@@ -47,17 +44,25 @@ function operate(operator, num1, num2) {
 
 function updateDisplay(userInput) {
   const display = document.querySelector('.display');
-  if (displayValue.length === 0 && num1 === undefined) {
+  // if (displayValue.length === 0 && num1 === undefined) {
+  //   display.textContent = userInput;
+  //   displayValue.push(userInput);
+  // } else if (num2 != undefined) {
+  //   display.textContent = userInput;
+  // } else {
+  //   display.textContent += userInput;
+  //   displayValue.push(userInput);
+  // }
+
+  // console.log(displayValue);
+
+  if (displayValue.length === 0) {
     display.textContent = userInput;
     displayValue.push(userInput);
-  } else if (num2 != undefined) {
-    display.textContent = userInput;
   } else {
     display.textContent += userInput;
     displayValue.push(userInput);
   }
-
-  console.log(displayValue);
 }
 
 function allClear() {
@@ -76,7 +81,7 @@ function assignOperator(userInput) {
     return;
   } else {
     operator = userInput;
-    updateDisplay(` ${operator} `);
+    // updateDisplay(` ${operator} `);
     assignNum();
   }
 }
@@ -89,6 +94,7 @@ function assignNum() {
   } else {
     num2 = parseInt(displayValue.join(''));
     displayValue.length = 0;
-    console.log(num2);
+    operate(operator, num1, num2);
+    // console.log(num2);
   }
 }
