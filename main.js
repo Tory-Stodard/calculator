@@ -1,5 +1,5 @@
-let num1;
-let num2;
+const num1 = [];
+const num2 = [];
 let operator;
 
 function add(num1, num2) {
@@ -33,9 +33,11 @@ function operate(operator, num1, num2) {
 
 function updateDisplay(userInput) {
   const display = document.querySelector('.display');
-  if (display.textContent === '0') {
+  if (num1.length === 0) {
     display.textContent = userInput;
-  } else {
+    num1.push(userInput);
+  } else if (operator === undefined) {
     display.textContent += userInput;
+    num1.push(userInput);
   }
 }
