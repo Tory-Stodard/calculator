@@ -20,51 +20,44 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
-  switch (operator) {
-    case '+':
-      return add(num1, num2);
-    case '-':
-      return subtract(num1, num2);
-    case '*':
-      return multiply(num1, num2);
-    case '/':
-      return divide(num1, num2);
+  let solution;
+  if (num1 === undefined || (num2 === undefined && displayValue.length === 0)) {
+    return;
+  } else {
+    switch (operator) {
+      case '+':
+        assignNum();
+      // solution = add(num1, num2);
+      // updateDisplay(solution);
+      case '-':
+        assignNum();
+      // solution = subtract(num1, num2);
+      // updateDisplay(solution);
+      case '*':
+        assignNum();
+      // solution = multiply(num1, num2);
+      // updateDisplay(solution);
+      case '/':
+        assignNum();
+      // solution = divide(num1, num2);
+      // updateDisplay(solution);
+    }
   }
 }
 
 function updateDisplay(userInput) {
   const display = document.querySelector('.display');
-  if (operator === undefined && displayValue.length === 0) {
+  if (displayValue.length === 0 && num1 === undefined) {
     display.textContent = userInput;
     displayValue.push(userInput);
-  } else if (operator === undefined) {
-    switch (userInput) {
-      case '+':
-      case '-':
-      case '*':
-      case '/':
-        operator = userInput;
-        display.textContent += ` ${userInput} `;
-        num1 = parseInt(displayValue.join(''));
-        displayValue.length = 0;
-        break;
-      default:
-        display.textContent += userInput;
-        displayValue.push(userInput);
-    }
+  } else if (num2 != undefined) {
+    display.textContent = userInput;
   } else {
-    switch (userInput) {
-      case '=':
-        num2 = parseInt(displayValue.join(''));
-        const solution = operate(operator, num1, num2);
-        display.textContent += ` = ${solution}`;
-        displayValue.length = 0;
-        break;
-      default:
-        display.textContent += userInput;
-        displayValue.push(userInput);
-    }
+    display.textContent += userInput;
+    displayValue.push(userInput);
   }
+
+  console.log(displayValue);
 }
 
 function allClear() {
@@ -74,4 +67,28 @@ function allClear() {
   operator = undefined;
   num1 = undefined;
   num2 = undefined;
+}
+
+function assignOperator(userInput) {
+  if (displayValue.length === 0 && userInput === '-') {
+    updateDisplay(userInput);
+  } else if (displayValue.length === 0 && userInput != typeof Number) {
+    return;
+  } else {
+    operator = userInput;
+    updateDisplay(` ${operator} `);
+    assignNum();
+  }
+}
+
+function assignNum() {
+  if (num1 === undefined) {
+    num1 = parseInt(displayValue.join(''));
+    displayValue.length = 0;
+    // console.log(num1);
+  } else {
+    num2 = parseInt(displayValue.join(''));
+    displayValue.length = 0;
+    console.log(num2);
+  }
 }
