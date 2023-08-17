@@ -98,7 +98,10 @@ function allClear() {
 }
 
 function assignOperator(str) {
-  if (currentNum === '') {
+  if (currentNum === '' && str === '-') {
+    currentNum += str;
+    updateCurrentNumberDisplay(currentNum);
+  } else if (currentNum === '' || currentNum === '-') {
     return;
   } else {
     operator = str;
