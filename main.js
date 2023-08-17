@@ -1,91 +1,107 @@
-let num1 = "";
-let num2 = "";
-let operator;
+let num1 = '';
+let num2 = '';
+let currentNum = '';
+let operator = '';
 
-const numberBtns = document.querySelectorAll(".number-btn");
-const operatorBtns = document.querySelectorAll(".operator-btn");
-const equalsBtn = document.querySelector(".equals-btn");
+const numberBtns = document.querySelectorAll('.number-btn');
+const operatorBtns = document.querySelectorAll('.operator-btn');
+const equalsBtn = document.querySelector('.equals-btn');
 
 numberBtns.forEach((element) =>
-  element.addEventListener("click", (e) => {
+  element.addEventListener('click', (e) => {
     const str = e.target.textContent;
-    if (operator === undefined) {
-      num1 += str;
-      updateDisplay(num1);
-    } else {
-      num2 += str;
-      updateDisplay(num2);
-    }
+    currentNum += str;
+    updateCurrentNumberDisplay(currentNum);
   })
 );
 
 operatorBtns.forEach((element) =>
-  element.addEventListener("click", (e) => {
+  element.addEventListener('click', (e) => {
     const str = e.target.textContent;
     assignOperator(str);
   })
 );
 
-equalsBtn.addEventListener("click", () => {
-  if (num1 === "" || num2 === "") {
+equalsBtn.addEventListener('click', () => {
+  if (num1 === '') {
     return;
-  } else {
+  } else if (currentNum != '') {
+    num2 = currentNum;
     operate(num1, num2, operator);
   }
 });
 
 function add(num1, num2) {
   const solution = num1 + num2;
-  updateDisplay(solution);
+  updateExpressionDisplay(false, solution);
 }
 
 function subtract(num1, num2) {
   const solution = num1 - num2;
-  updateDisplay(solution);
+  updateExpressionDisplay(false, solution);
 }
 
 function multiply(num1, num2) {
   const solution = num1 * num2;
-  updateDisplay(solution);
+  updateExpressionDisplay(false, solution);
 }
 
 function divide(num1, num2) {
   const solution = num1 / num2;
-  updateDisplay(solution);
+  updateExpressionDisplay(false, solution);
 }
 
 function operate(num1, num2, operator) {
   num1 = Number(num1);
   num2 = Number(num2);
   switch (operator) {
-    case "+":
+    case '+':
       add(num1, num2);
       break;
-    case "-":
+    case '-':
       subtract(num1, num2);
       break;
-    case "*":
+    case '*':
       multiply(num1, num2);
       break;
-    case "/":
+    case '/':
       divide(num1, num2);
       break;
   }
 }
 
-function updateDisplay(str) {
-  const display = document.querySelector(".display");
-  display.textContent = str;
+function updateCurrentNumberDisplay(currentNum) {
+  const currentNumDisplay = document.querySelector('.current-number-display');
+  currentNumDisplay.textContent = currentNum;
 }
 
-function assignOperator(str) {
-  operator = str;
-  updateDisplay(` ${operator} `);
+function updateExpressionDisplay(shouldClear, solution) {
+  const expressionDisplay = document.querySelector('.expression-display');
+  if (shouldClear) {
+    expressionDisplay.innerHTML = '&nbsp';
+  } else if (num1 === '') {
+    num1 = currentNum;
+    currentNum = '';
+    expressionDisplay.textContent = `${num1} ${operator}`;
+  } else {
+    expressionDisplay.textContent = `${num1} ${operator} ${num2} = ${solution}`;
+  }
 }
 
 function allClear() {
-  num1 = "";
-  num2 = "";
-  operator = undefined;
-  updateDisplay("0");
+  num1 = '';
+  num2 = '';
+  currentNum = '';
+  operator = '';
+  updateCurrentNumberDisplay('0');
+  updateExpressionDisplay(true);
+}
+
+function assignOperator(str) {
+  if (currentNum === '') {
+    return;
+  } else {
+    operator = str;
+    updateExpressionDisplay();
+  }
 }
