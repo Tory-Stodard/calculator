@@ -47,8 +47,12 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  const solution = num1 / num2;
-  updateExpressionDisplay(false, solution);
+  if (num2 === 0) {
+    updateCurrentNumberDisplay('LOL');
+  } else {
+    const solution = num1 / num2;
+    updateExpressionDisplay(false, solution);
+  }
 }
 
 function operate(num1, num2, operator) {
