@@ -70,7 +70,7 @@ function updateExpressionDisplay(chainOperation) {
   if (calculator.solution === 'LOL') {
     expressionDisplay.textContent = "You can't do that!";
   } else if (calculator.previousNum === '') {
-    expressionDisplay.innerHTML = '&nbsp;';
+    expressionDisplay.textContent = '';
   } else if (calculator.currentNum === '' || chainOperation) {
     expressionDisplay.textContent = `${calculator.previousNum} ${calculator.operator}`;
   } else {

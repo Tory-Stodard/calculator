@@ -1,0 +1,46 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.calculator {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100dvh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculator > * {
+  border: 1px solid black;
+  font-size: 1.5rem;
+}
+
+.clear-btn,
+.equals-btn {
+  grid-column: span 2;
+}
+
+.display {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.expression-display,
+.current-num-display {
+  margin-right: 1rem;
+}
+
+.expression-display {
+  font-size: 1rem;
+}

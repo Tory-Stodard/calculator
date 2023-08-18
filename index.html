@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="calculator">
       <div class="display">
-        <div class="expression-display">&nbsp;</div>
+        <div class="expression-display"></div>
         <div class="current-num-display">0</div>
       </div>
+      <button class="clear-btn" onclick="allClear()">ac</button>
       <button class="num-btn">0</button>
       <button class="num-btn">1</button>
       <button class="num-btn">2</button>
@@ -25,10 +27,9 @@
       <button class="operator-btn">-</button>
       <button class="operator-btn">*</button>
       <button class="operator-btn">/</button>
-      <button class="equals-btn">=</button>
       <button class="decimal-btn" onclick="addDecimal()">.</button>
-      <button class="clear-btn" onclick="allClear()">ac</button>
       <button class="delete-btn" onclick="del()">del</button>
+      <button class="equals-btn">=</button>
     </div>
     <script src="main.js"></script>
   </body>
