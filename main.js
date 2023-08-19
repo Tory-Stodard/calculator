@@ -60,7 +60,9 @@ function assignOperator(str) {
   if (
     calculator.operator !== '' ||
     calculator.currentNum === '' ||
-    calculator.currentNum === '-'
+    calculator.currentNum === '-' ||
+    calculator.currentNum === '.' ||
+    calculator.currentNum === '-.'
   ) {
     return;
   } else {
