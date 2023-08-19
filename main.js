@@ -11,7 +11,7 @@ const equalsBtn = document.querySelector('.equals-btn');
 
 numBtns.forEach((element) =>
   element.addEventListener('click', (e) => {
-    if (calculator.solution !== '') {
+    if (calculator.solution !== '' || calculator.solution === 'LOL') {
       allClear();
     }
     calculator.currentNum += e.target.textContent;
@@ -175,7 +175,10 @@ function chainOperation(str) {
   }
   operate();
   if (calculator.solution === 'LOL') {
-    updateExpressionDisplay();
+    updateCurrentNumDisplay();
+    calculator.previousNum = '';
+    calculator.currentNum = '';
+    calculator.operator = '';
   } else {
     calculator.operator = str;
     calculator.previousNum = calculator.currentNum;
