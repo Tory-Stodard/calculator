@@ -163,7 +163,12 @@ function operate() {
 }
 
 function chainOperation(str) {
-  if (calculator.currentNum === '' || calculator.currentNum === '-') {
+  if (
+    calculator.currentNum === '' ||
+    calculator.currentNum === '-' ||
+    calculator.currentNum === '.' ||
+    calculator.currentNum === '-.'
+  ) {
     return;
   }
   operate();
