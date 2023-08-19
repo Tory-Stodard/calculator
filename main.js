@@ -34,7 +34,13 @@ operatorBtns.forEach((element) =>
 );
 
 equalsBtn.addEventListener('click', () => {
-  if (calculator.previousNum === '' || calculator.currentNum === '') {
+  if (
+    calculator.previousNum === '' ||
+    calculator.currentNum === '' ||
+    calculator.currentNum === '-' ||
+    calculator.currentNum === '.' ||
+    calculator.currentNum === '-.'
+  ) {
     return;
   } else {
     operate();
