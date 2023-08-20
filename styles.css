@@ -138,6 +138,7 @@ main {
 @media (max-height: 400px) {
   main {
     height: auto;
+    padding: 1rem 0;
   }
 }
 
