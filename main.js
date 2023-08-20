@@ -47,6 +47,62 @@ equalsBtn.addEventListener('click', () => {
   }
 });
 
+window.addEventListener('keydown', (e) => {
+  e.preventDefault();
+  switch (e.key) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      if (calculator.solution !== '' || calculator.solution === 'LOL') {
+        allClear();
+      }
+      calculator.currentNum += e.key;
+      updateCurrentNumDisplay();
+      break;
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+      const str = e.key;
+      if (str === '-' && calculator.currentNum === '') {
+        calculator.currentNum = str;
+        updateCurrentNumDisplay();
+      } else if (calculator.operator !== '') {
+        chainOperation(str);
+      } else {
+        assignOperator(str);
+      }
+      break;
+    case '=':
+    case 'Enter':
+      if (
+        calculator.previousNum === '' ||
+        calculator.currentNum === '' ||
+        calculator.currentNum === '-' ||
+        calculator.currentNum === '.' ||
+        calculator.currentNum === '-.'
+      ) {
+        return;
+      } else {
+        operate();
+      }
+      break;
+    case '.':
+      addDecimal();
+      break;
+    case 'Backspace':
+      allClear();
+      break;
+  }
+});
+
 function updateCurrentNumDisplay() {
   const currentNumDisplay = document.querySelector('.current-num-display');
   if (calculator.currentNum === '') {
