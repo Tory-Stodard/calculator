@@ -134,6 +134,12 @@ main {
   }
 }
 
+@media (max-height: 400px) {
+  main {
+    height: auto;
+  }
+}
+
 @media (hover: hover) {
   .calculator button:hover {
     cursor: pointer;
